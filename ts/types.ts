@@ -1296,3 +1296,8 @@ export interface AllTimeDelegatorPoolStats {
 export interface AllTimeDelegatorStats {
     poolData: AllTimeDelegatorPoolStats[];
 }
+
+export enum VotingCardType {
+    TREASURY = 'TREASURY',
+    ZEIP = 'ZEIP',
+}
