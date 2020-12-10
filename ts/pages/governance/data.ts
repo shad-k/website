@@ -26,6 +26,18 @@ export interface Proposal {
     risks: ProposalProperty;
 }
 
+export interface TreasuryProposal {
+    id: number;
+    timestamp: number;
+    description: string;
+    canceled: boolean;
+    executed: boolean;
+    forVotes: BigNumber;
+    againstVotes: BigNumber;
+    upcoming: boolean;
+    happening: boolean;
+}
+
 export interface Proposals {
     [id: number]: Proposal;
 }
@@ -233,8 +245,7 @@ export const proposals: Proposals = {
                 },
                 {
                     text: '0x Forum',
-                    url:
-                        'https://forum.0x.org/',
+                    url: 'https://forum.0x.org/',
                 },
             ],
         },
@@ -244,8 +255,7 @@ export const proposals: Proposals = {
                 `Actively managing the process will constitue an overhead cost for the designated ZEIP committee. This latter will consists initially of members of the 0x Core team, but overtime it will have to be open to other members of the community. `,
             ],
             rating: 1,
-            links: [
-            ],
+            links: [],
         },
     },
     77: {
@@ -268,8 +278,7 @@ export const proposals: Proposals = {
             links: [
                 {
                     text: 'Initial set of staking parameters',
-                    url:
-                        'https://github.com/0xProject/ZEIPs/issues/61',
+                    url: 'https://github.com/0xProject/ZEIPs/issues/61',
                 },
             ],
         },
@@ -288,8 +297,7 @@ export const proposals: Proposals = {
                 },
                 {
                     text: 'Staking security audit',
-                    url:
-                        'https://diligence.consensys.net/audits/2019/10/0x-v3-staking/',
+                    url: 'https://diligence.consensys.net/audits/2019/10/0x-v3-staking/',
                 },
             ],
         },
@@ -315,8 +323,7 @@ export const proposals: Proposals = {
             links: [
                 {
                     text: 'Initial set of staking parameters',
-                    url:
-                        'https://github.com/0xProject/ZEIPs/issues/61',
+                    url: 'https://github.com/0xProject/ZEIPs/issues/61',
                 },
             ],
         },
@@ -326,7 +333,6 @@ export const proposals: Proposals = {
                 `Staking contracts were designed to safely allow updates of a specific set of parameters via a SetParams function.`,
                 `This functionality does not trigger security-critical operations, and was considered safe by external security auditors.`,
                 `There is a risk that decreasing the fee multiplier will impact the liquidity rewards in the immediate short term.`,
-
             ],
             rating: 1,
             links: [
@@ -337,8 +343,7 @@ export const proposals: Proposals = {
                 },
                 {
                     text: 'Staking security audit',
-                    url:
-                        'https://diligence.consensys.net/audits/2019/10/0x-v3-staking/',
+                    url: 'https://diligence.consensys.net/audits/2019/10/0x-v3-staking/',
                 },
             ],
         },
@@ -373,8 +378,7 @@ export const stagingProposals: Proposals = {
             links: [
                 {
                     text: 'Initial set of staking parameters',
-                    url:
-                        'https://github.com/0xProject/ZEIPs/issues/61',
+                    url: 'https://github.com/0xProject/ZEIPs/issues/61',
                 },
             ],
         },
@@ -384,7 +388,6 @@ export const stagingProposals: Proposals = {
                 `Staking contracts were designed to safely allow updates of a specific set of parameters via a SetParams function.`,
                 `This functionality does not trigger security-critical operations, and was considered safe by external security auditors.`,
                 `There is a risk that decreasing the fee multiplier will impact the liquidity rewards in the immediate short term.`,
-
             ],
             rating: 1,
             links: [
@@ -395,8 +398,7 @@ export const stagingProposals: Proposals = {
                 },
                 {
                     text: 'Staking security audit',
-                    url:
-                        'https://diligence.consensys.net/audits/2019/10/0x-v3-staking/',
+                    url: 'https://diligence.consensys.net/audits/2019/10/0x-v3-staking/',
                 },
             ],
         },
