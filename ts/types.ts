@@ -1298,6 +1298,6 @@ export interface AllTimeDelegatorStats {
 }
 
 export enum VotingCardType {
-    TREASURY = 'TREASURY',
-    ZEIP = 'ZEIP',
+    Treasury = 'TREASURY',
+    Zeip = 'ZEIP',
 }
