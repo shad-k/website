@@ -34,6 +34,7 @@ interface TreasuryCardProps {
     order: number;
     description: string;
     tally?: TallyInterface;
+    status?: string;
 }
 
 type VoteIndexCardProps = ZEIPCardProps | TreasuryCardProps;
@@ -106,6 +107,7 @@ export const VoteIndexCard: React.StatelessComponent<VoteIndexCardProps> = props
                 executed: isExecuted,
                 upcoming: isUpcoming,
                 happening: isHappening,
+                status,
                 timestamp,
             } = props;
             return (
@@ -121,18 +123,30 @@ export const VoteIndexCard: React.StatelessComponent<VoteIndexCardProps> = props
                         <FlexWrap>
                             <Column width="60%" padding="0px 20px 0px 0px">
                                 <Tag>Treasury</Tag>
-                                <Heading>{`${description.slice(0, 20)}...`}</Heading>
+                                {description ? (
+                                    <>
+                                        <Heading marginBottom="20px">{`${description.slice(0, 20)}...`}</Heading>
 
-                                <Paragraph>{description}</Paragraph>
+                                        <Paragraph>{`${description.slice(0, 200)}...`}</Paragraph>
+                                    </>
+                                ) : (
+                                    <span>Loading...</span>
+                                )}
                             </Column>
                             <Column>
                                 <div className="flex flex-column items-end">
-                                    <VoteStatusText status={getStatus(isCanceled, isExecuted, isUpcoming)} />
+                                    <VoteStatusText
+                                        status={getStatus(
+                                            isCanceled || ['Defeated', 'Expired', 'Canceled'].includes(status),
+                                            isExecuted,
+                                            isUpcoming,
+                                        )}
+                                    />
                                     <Paragraph marginBottom="12px" isMuted={1}>{`${tally.yes.plus(
                                         tally.no,
                                     )} ZRX Total Vote`}</Paragraph>
                                     <Paragraph marginBottom="12px">
-                                        {isExecuted || isCanceled
+                                        {timestamp && (isExecuted || isCanceled || status === 'Defeated')
                                             ? `Ended ${timestamp.format('MMM DD, YYYY')}`
                                             : isHappening
                                             ? `Ends in ${timestamp.diff(moment(), 'days')} days`
@@ -162,7 +176,7 @@ export const VoteIndexCard: React.StatelessComponent<VoteIndexCardProps> = props
                         <FlexWrap>
                             <Column width="60%" padding="0px 20px 0px 0px">
                                 <Tag className="zeip">ZEIP</Tag>
-                                <Heading>
+                                <Heading marginBottom="20px">
                                     {`${title} `}
                                     <Muted>{`(ZEIP-${zeipId})`}</Muted>
                                 </Heading>
