@@ -580,6 +580,7 @@ export enum WebsitePaths {
     Careers = '/careers',
     Credits = '/credits',
     Vote = '/zrx/vote',
+    Register = '/zrx/register',
     Extensions = '/extensions',
     // Explore = '/explore',
     AssetSwapperPage = '/asset-swapper',
