@@ -37,8 +37,8 @@ import { constants } from 'ts/utils/constants';
 import { formatZrx } from 'ts/utils/format_number';
 import { stakingUtils } from 'ts/utils/staking_utils';
 
+import { generateUniqueId, Jazzicon } from 'ts/components/ui/jazzicon';
 import { trackEvent } from 'ts/utils/google_analytics';
-import { Jazzicon, generateUniqueId } from 'ts/components/ui/jazzicon';
 
 const getFormattedTimeLeft = (secondsLeft: number) => {
     if (secondsLeft === 0) {
@@ -78,7 +78,7 @@ interface ErrorButtonProps {
 interface VotingPowerConfirmationProps {
     selectedStakingPools: UserStakingChoice[] | undefined;
     onGoToNextStep: () => void;
-    providerState: ProviderState
+    providerState: ProviderState;
 }
 
 const ConnectWalletButton = styled(Button)`
@@ -749,13 +749,12 @@ export const TokenApprovalPane = (props: TokenApprovalPaneProps) => {
     // tslint:disable-next-line: max-file-line-count
 };
 
-export const VotingPowerConfirmation: React.FC<VotingPowerConfirmationProps> = (props) => {
+export const VotingPowerConfirmation: React.FC<VotingPowerConfirmationProps> = props => {
     const { selectedStakingPools, providerState } = props;
 
-    if(!selectedStakingPools || selectedStakingPools.length === 0) {
+    if (!selectedStakingPools || selectedStakingPools.length === 0) {
         return null;
     }
-    const name = stakingUtils.getPoolDisplayName(props.selectedStakingPools && props.selectedStakingPools.length > 0 && props.selectedStakingPools[0].pool);
 
     return (
         <RelativeContainer>
@@ -775,7 +774,7 @@ export const VotingPowerConfirmation: React.FC<VotingPowerConfirmationProps> = (
                 </Heading>
             </Container>
             <Separator />
-            
+
             <InfoHeader>
                 Voting power delegated to pool owner
             </InfoHeader>
@@ -783,20 +782,20 @@ export const VotingPowerConfirmation: React.FC<VotingPowerConfirmationProps> = (
             {
                 selectedStakingPools && selectedStakingPools.length > 0 && selectedStakingPools.map((selectedPool: UserStakingChoice) => {
                     const { pool, zrxAmount } = selectedPool;
-                    const name = stakingUtils.getPoolDisplayName(pool);
+                    const poolName = stakingUtils.getPoolDisplayName(pool);
 
                     return (
-                        <Container>
+                        <Container key={poolName}>
                             <Heading>
-                                {pool.metaData.logoUrl && <MarketMakerIcon src={pool.metaData.logoUrl} alt={name} />}
+                                {pool.metaData.logoUrl && <MarketMakerIcon src={pool.metaData.logoUrl} alt={poolName} />}
                                 <Title>
-                                    {name}
+                                    {poolName}
                                 </Title>
                                 <ZRXAmount>{formatZrx(zrxAmount / 2).formatted} ZRX</ZRXAmount>
                                 <Difference>({50 / selectedStakingPools.length}%)</Difference>
                             </Heading>
                         </Container>
-                    )
+                    );
                 })
             }
 
@@ -808,8 +807,8 @@ export const VotingPowerConfirmation: React.FC<VotingPowerConfirmationProps> = (
             >
                 Next
             </ButtonWithIcon>
-        </RelativeContainer>       
-    )
+        </RelativeContainer>
+    );
 };
 
 const Container = styled.div`
