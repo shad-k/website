@@ -746,7 +746,6 @@ export const TokenApprovalPane = (props: TokenApprovalPaneProps) => {
             </Inner>
         </RelativeContainer>
     );
-    // tslint:disable-next-line: max-file-line-count
 };
 
 export const VotingPowerConfirmation: React.FC<VotingPowerConfirmationProps> = props => {
@@ -873,3 +872,4 @@ const JazzIconContainer = styled.div`
     width: 40px;
     margin-right: 20px;
 `;
+// tslint:disable-next-line: max-file-line-count
